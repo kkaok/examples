@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Excel Download Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script>
+    var doUrlProcess = function(){
+    	var formData = new FormData();
+        formData.append("name", "kkaok");
+        formData.append("authType", "web");
+        $.ajax({
+            type : "put",
+            url : "/api/users/1234",
+            data : formData,
+            contentType:false,
+            processData:false,
+            success : function(result) {
+                alert(JSON.stringify(result));
+            },
+        })
+    }   
+
+    var doUrlProcessOld = function(){
+        var formData = {
+        	    "name" : "kkaok",
+        	    "authType" : "web"
+        }
+        $.ajax({
+            type : "put",
+            url : "/api/users/1234",
+            data : formData,
+            success : function(result) {
+                alert(JSON.stringify(result));
+            },
+        })
+    }
+    </script>
+</head>
+<body>
+<br><br><br>
+<div>
+ <a href="javascript:doUrlProcess()">Test : success</a>
+</div>
+
+<div>
+ <a href="javascript:doUrlProcessOld()">Test : failure</a>
+</div>
+</body>
+</html>
