@@ -1,0 +1,32 @@
+[
+	{
+		"make" : "Toyota",
+		"model": "Celica",
+		"price": 35000,
+		"zombies": "Elly",
+		"style": "S",
+		"clothes": "Jeans",
+		"useYn": "Y",
+		"date":"2019/01/29"
+	},
+	{
+		"make": "Ford",
+		"model": "Mondeo",
+		"price": 32000,
+		"zombies": "Shane",
+		"style": "F",
+		"clothes": "Shorts",
+        "useYn": "N",
+        "date":"2019/01/27"
+	},
+	{
+		"make": "Porsche",
+		"model": "Boxter",
+		"price": 72000,
+		"zombies": "Jack",
+		"style": "D",
+		"clothes": "Padded",
+        "useYn": "Y",
+        "date":"2019/01/28"
+	}
+]
