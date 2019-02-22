@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+  layout:decorator="layout/defaultLayout">
+<head>
+    <title>Thymeleaf 예제</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+<h1>Page Content</h1>
+</th:block>
+
+<th:block layout:fragment="pageCustomScript">
+    <script th:src="@{/assets/vendor/jquery/jquery.js}"></script>
+</th:block>    
+<th:block layout:fragment="pageCustomCss">
+    <script th:src="@{/assets/vendor/jquery/jquery.css}"></script>
+</th:block>    
+</body>
+</html>

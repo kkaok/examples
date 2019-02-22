@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thymeleaf 예제</title>
+</head>
+<body>
+<h1>application.properties 값 조회</h1>
+app title : <span th:text="${@environment.getProperty('app.title')}"></span><br/>
+
+<h1>message 조회</h1>
+msg.example.title : <span th:text="#{msg.example.title}"></span><br/>
+
+<h1>세션 정보 조회</h1>
+session['userId'] : <span th:text="${session['userId']}"></span><br/>
+session.userId : <span th:text="${session.userId}"></span><br/>
+
+<h1>Parameter 가져오기 </h1>
+{authType} : <span th:text="${param.authType}"></span><br/>
+{authType} : <span th:text="${#httpServletRequest.getParameter('authType')}"></span><br/>
+
+<h1>PathVariable 가져오기 </h1>
+{userId} : <span th:text="__${userId}__"></span><br/>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Thymeleaf 예제</title>
+    <!-- Link 예제 -->
+    <script th:src="@{/assets/vendor/jquery/jquery.js}"></script>
+</head>
+<body>
+<h1>Collection 객체 each 예제</h1>
+<p th:each="user : ${users}" th:text="${user.name}"></p>
+
+<h1>Utility Objects 예제</h1>
+<p>#calendars <br>Today is: <span th:text="${#calendars.format(today,'yyyy-MM-dd')}">2019-02-15</span></p>
+<p>#arrays <br>user count is <span th:text="${#arrays.length(users)}"></span>.</p>
+
+<h1>객체 예제</h1>
+<p th:text="${user.name}">default</p>
+<p>[[${user.name}]]</p>
+
+<h1>th:text 예제</h1>
+<p th:text="${content}">default value</p>
+
+<h1>th:utext(Html) 예제</h1>
+<p th:utext="${content}">default value</p>
+
+<h1>th:with 예제 : 변수 선언</h1>
+<p th:with="authType = ${user.authType}+' Type'" th:text="${authType}"></p>
+
+<h1>th:if 예제</h1>
+<p th:if="${user.authType}=='web'" th:text="${user.authType}"></p>
+
+<h1>th:unless 예제</h1>
+<p th:unless="${user.authType}=='facebook'" th:text="'not '+ ${user.authType}"></p>
+
+<h1>script 예제</h1>
+<p><span id="scriptTest"></span></p> 
+<script>
+// script에서 값을 받을 때
+var userId = '[[${user.userId}]]';
+console.log(userId);
+$("#scriptTest").html(userId);
+</script>
+</body>
+</html>
