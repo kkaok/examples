@@ -2,6 +2,7 @@ package eblo.example.cache.service;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.SerializationUtils;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -12,26 +13,34 @@ import eblo.example.cache.domain.User;
 @Service
 public class UserService {
 
+    @Cacheable(cacheNames="userCache")
+    public User __getUser(final User user) {
+        return cloneUser(user);
+    }
+
     @Cacheable(cacheNames="userCache", key="#user.userId", condition = "#user.isUpdate != true")
     public User getUser(User user) {
-        user.setTimestamp(new Date());
-        return user;
+        return cloneUser(user);
     }
 
     @CachePut(cacheNames="userCache", key="#user.userId")
     public User addUser(User user) {
-        user.setTimestamp(new Date());
-        return user;
+        return cloneUser(user);
     }
 
     @CachePut(cacheNames="userCache", key="#user.userId")
     public User modifyUser(User user) {
-        user.setTimestamp(new Date());
-        return user;
+        return cloneUser(user);
     }
 
     @CacheEvict(cacheNames="userCache", key="#user.userId")
     public void removeUser(User user) {
-        user.setTimestamp(new Date());
+        cloneUser(user);
+    }
+    
+    private User cloneUser(User user) {
+        User rUser = SerializationUtils.clone(user);
+        rUser.setTimestamp(new Date());
+        return rUser;
     }
 }
