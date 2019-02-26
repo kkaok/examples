@@ -14,12 +14,12 @@ import eblo.example.cache.domain.User;
 public class UserService {
 
     @Cacheable(cacheNames="userCache")
-    public User __getUser(final User user) {
+    public User getUser(final User user) {
         return cloneUser(user);
     }
 
     @Cacheable(cacheNames="userCache", key="#user.userId", condition = "#user.isUpdate != true")
-    public User getUser(User user) {
+    public User __getUser(User user) {
         return cloneUser(user);
     }
 
