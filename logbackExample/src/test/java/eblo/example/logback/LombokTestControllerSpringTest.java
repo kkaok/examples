@@ -38,7 +38,7 @@ public class LombokTestControllerSpringTest {
         this.mockMvc.perform(get("/lombok-test"))
         .andExpect(status().isOk());
 
-        this.outputCapture.expect(containsString("LombokTestController:14] - test"));
+        this.outputCapture.expect(containsString("LombokTestController:14]"));
     }
 
 }

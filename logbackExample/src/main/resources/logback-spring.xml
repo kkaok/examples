@@ -34,18 +34,17 @@
     <property name="LOG_FILE_MAX" value="${log.config.max}"/>
     <!-- pattern -->
     <property name="LOG_PATTERN"
-              value="%-5level %d{yy-MM-dd HH:mm:ss} [%logger{0}:%line] - %msg%n"/>
+              value="%-5level %d{yy-MM-dd HH:mm:ss} %-40([%logger{0}:%line]) - %msg%n"/>
 
     <property name="LOG_PATTERN_LIVE"
-              value="%-5level %d{yy-MM-dd HH:mm:ss} [%method:%line] - %msg%n"/>
+              value="%-5level %d{yy-MM-dd HH:mm:ss} %-40([%method:%line]) - %msg%n"/>
 
     <!-- console log -->
-    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <pattern>${LOG_PATTERN}</pattern>
         </encoder>
     </appender>
-
     <!-- 로그 파일 생성 관련 -->
     <!-- 로그 모드 -->
     <!-- log file save -->
@@ -67,36 +66,36 @@
 		
 		    <logger name="jdbc.connection" additivity="false">
 		        <level value="WARN"/>
-		        <appender-ref ref="console"/>
+		        <appender-ref ref="STDOUT"/>
 		    </logger>
 		    <logger name="jdbc.audit" additivity="false">
 		        <level value="WARN"/>
-		        <appender-ref ref="console"/>
+		        <appender-ref ref="STDOUT"/>
 		    </logger>
 		    <logger name="jdbc.sqlonly" additivity="false">
 		        <level value="WARN"/>
-		        <appender-ref ref="console"/>
+		        <appender-ref ref="STDOUT"/>
 		    </logger>
 		    <logger name="jdbc.sqltiming" additivity="false">
 		        <level value="WARN"/>
-		        <appender-ref ref="console"/>
+		        <appender-ref ref="STDOUT"/>
 		    </logger>
 		    <logger name="jdbc.resultset" additivity="false">
 		        <level value="WARN"/>
-		        <appender-ref ref="console"/>
+		        <appender-ref ref="STDOUT"/>
 		    </logger>
 		    <logger name="jdbc.resultsettable" additivity="false">
 		        <level value="WARN"/>
-		        <appender-ref ref="console"/>
+		        <appender-ref ref="STDOUT"/>
 		    </logger>
 		
 		    <logger name="org.springframework" additivity="false">
 		        <level value="WARN"/>
-		        <appender-ref ref="console"/>
+		        <appender-ref ref="STDOUT"/>
 		    </logger>
 		
 		    <root level="INFO">
-		        <appender-ref ref="console"/>
+		        <appender-ref ref="STDOUT"/>
 		        <appender-ref ref="FILE"/>
 		    </root>
         </then>
@@ -106,36 +105,36 @@
         
             <logger name="jdbc.connection" additivity="false">
                 <level value="INFO"/>
-                <appender-ref ref="console"/>
+                <appender-ref ref="STDOUT"/>
             </logger>
             <logger name="jdbc.audit" additivity="false">
                 <level value="INFO"/>
-                <appender-ref ref="console"/>
+                <appender-ref ref="STDOUT"/>
             </logger>
             <logger name="jdbc.sqlonly" additivity="false">
                 <level value="INFO"/>
-                <appender-ref ref="console"/>
+                <appender-ref ref="STDOUT"/>
             </logger>
             <logger name="jdbc.sqltiming" additivity="false">
                 <level value="INFO"/>
-                <appender-ref ref="console"/>
+                <appender-ref ref="STDOUT"/>
             </logger>
             <logger name="jdbc.resultset" additivity="false">
                 <level value="INFO"/>
-                <appender-ref ref="console"/>
+                <appender-ref ref="STDOUT"/>
             </logger>
             <logger name="jdbc.resultsettable" additivity="false">
                 <level value="INFO"/>
-                <appender-ref ref="console"/>
+                <appender-ref ref="STDOUT"/>
             </logger>
         
             <logger name="org.springframework" additivity="false">
                 <level value="INFO"/>
-                <appender-ref ref="console"/>
+                <appender-ref ref="STDOUT"/>
             </logger>
         
             <root level="INFO">
-                <appender-ref ref="console"/>
+                <appender-ref ref="STDOUT"/>
             </root>
         </else>
     </if>
