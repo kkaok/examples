@@ -1,0 +1,28 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.3.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'eblo.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.apache.httpcomponents:httpclient:4.5.7'
+	implementation 'commons-collections:commons-collections'
+	implementation 'org.springframework.boot:spring-boot-configuration-processor'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation("org.projectlombok:lombok:1.18.6")
+    implementation 'org.codehaus.janino:janino:3.0.12'
+    
+}
