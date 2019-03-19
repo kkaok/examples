@@ -16,13 +16,16 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	//implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.apache.httpcomponents:httpclient:4.5.7'
 	implementation 'commons-collections:commons-collections'
 	implementation 'org.springframework.boot:spring-boot-configuration-processor'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    implementation("org.projectlombok:lombok:1.18.6")
     implementation 'org.codehaus.janino:janino:3.0.12'
+    implementation('org.apache.commons:commons-lang3:3.5')
+    annotationProcessor("org.projectlombok:lombok:1.18.6")
+    compileOnly("org.projectlombok:lombok:1.18.6")        
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-hystrix', version: '2.1.1.RELEASE'
     
 }
