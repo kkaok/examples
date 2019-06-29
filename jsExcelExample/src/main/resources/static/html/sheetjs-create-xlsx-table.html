@@ -7,39 +7,35 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
 <script>
+//공통
 // 참고 출처 : https://redstapler.co/sheetjs-tutorial-create-xlsx/
-// 공통
-var CustomExcelInfo = function(){ 
-    // 엑셀파일명
-    this.excelFileName;
-    // 시트명  
-    this.sheetName;
-    // worksheet
-    this.worksheet;
-}
-
-function getWbOut(sheetName, ws){
-    // workbook 생성
-    var wb = XLSX.utils.book_new();
-
-    // 시트 데이터를 시트에 넣기 
-    XLSX.utils.book_append_sheet(wb, ws, sheetName);
-
-    // 엑셀 파일 쓰기 
-    var wbout = XLSX.write(wb, {bookType:'xlsx',  type: 'binary'});
-    return wbout;
-}
-
 function s2ab(s) { 
     var buf = new ArrayBuffer(s.length); //convert s to arrayBuffer
     var view = new Uint8Array(buf);  //create uint8array as viewer
     for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF; //convert to octet
     return buf;    
 }
-
+var CustomExcelInfo = function(){ 
+    // 엑셀파일명
+    this.excelFileName;
+    // 시트명  
+    this.sheetName;
+    // worksheet
+    this.worksheetData;
+}
 function exportExcel(){ 
-    var excelInfo = getCustomExcelInfo();
-    var wbout = getWbOut(excelInfo.sheetName, excelInfo.worksheet);
+    // 설정 및 데이터 가져오기 
+    var excelInfo = getSettings();
+    
+    // workbook 생성
+    var wb = XLSX.utils.book_new();
+
+    // 시트 데이터를 시트에 넣기 
+    XLSX.utils.book_append_sheet(wb, excelInfo.worksheetData, excelInfo.sheetName);
+
+    // 엑셀 파일 쓰기 
+    var wbout = XLSX.write(wb, {bookType:'xlsx',  type: 'binary'});
+
     saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), excelInfo.excelFileName);
 }
 
@@ -50,7 +46,7 @@ $(document).ready(function() {
 });
 </script>
 <script>
-function getCustomExcelInfo(){ 
+function getSettings(){ 
     var customExcelInfo = new CustomExcelInfo();
     customExcelInfo.excelFileName = 'table-test.xlsx';
     customExcelInfo.sheetName = 'Table Test Sheet';
@@ -58,7 +54,7 @@ function getCustomExcelInfo(){
     var table_data = document.getElementById('tableData'); // $("#tableData");
     // 시트 데이터 생성
     var ws = XLSX.utils.table_to_sheet(table_data);
-    customExcelInfo.worksheet = ws;
+    customExcelInfo.worksheetData = ws;
     return customExcelInfo;
 }
 </script>
