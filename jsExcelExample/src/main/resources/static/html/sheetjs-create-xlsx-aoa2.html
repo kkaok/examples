@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>sheetjs create xlsx excel example(array of array)</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+<script>
+// 참고 출처 : https://redstapler.co/sheetjs-tutorial-create-xlsx/
+function getWbOut(){
+	// 1. workbook 생성
+	var wb = XLSX.utils.book_new();
+	// 2. 옵션 지정
+	wb.Props = {
+            Title: "SheetJS Tutorial",
+            Subject: "Array of Array Test",
+            Author: "Array of Array Tester",
+            CreatedDate: new Date(2019,06,29)
+    };
+	// sheet명 생성
+	wb.SheetNames.push("Test Sheet");
+	// data 정의 배열(rows) 안에 배열(cols) 형태 
+	var ws_data = [['hello' , 'world']];  //a row with 2 columns
+	// 배열 데이터로 시트 데이터 생성
+	var ws = XLSX.utils.aoa_to_sheet(ws_data);
+	// 시트 데이터를 시트에 넣기 
+	wb.Sheets["Test Sheet"] = ws;
+	// 엑셀 파일 쓰기 
+	var wbout = XLSX.write(wb, {bookType:'xlsx',  type: 'binary'});
+	return wbout;
+}
+
+function s2ab(s) { 
+    var buf = new ArrayBuffer(s.length); //convert s to arrayBuffer
+    var view = new Uint8Array(buf);  //create uint8array as viewer
+    for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF; //convert to octet
+    return buf;    
+}
+
+$(document).ready(function() { 
+	$("#excelFileExport").click(function(){
+	    saveAs(new Blob([s2ab(getWbOut())],{type:"application/octet-stream"}), 'aoa-test.xlsx');
+	});
+});
+</script>
+</head>
+<body>
+파일 내보내기(배열) : <input type="button" id="excelFileExport" value="엑셀 파일 다운로드(배열)" />
+</body>
+</html>
