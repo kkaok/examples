@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js excel example 01</title>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.full.min.js"></script>
+
+<script>
+function excelExport(event){
+    var input = event.target;
+    var reader = new FileReader();
+    reader.onload = function(){
+        var fileData = reader.result;
+        var wb = XLSX.read(fileData, {type : 'binary'});
+        var sheetsList = wb.SheetNames;
+        var firstSheetName = sheetsList[0];
+        var firstSheet = wb.Sheets[firstSheetName];
+        var rowObj =XLSX.utils.sheet_to_row_object_array(firstSheet);
+        var jsonObj = JSON.stringify(rowObj);
+        console.log(jsonObj);
+        $("#displayExcelData").text(jsonObj);
+    };
+    reader.readAsBinaryString(input.files[0]);
+}
+
+</script>
+</head>
+<body>
+<input type="file" id="excelFile" onchange="excelExport(event)"/>
+<div id="displayExcelData">
+</div>
+</body>
+</html>
