@@ -15,50 +15,42 @@ function s2ab(s) {
     for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF; //convert to octet
     return buf;    
 }
-var CustomExcelInfo = function(){ 
-    // 엑셀파일명
-    this.excelFileName;
-    // 시트명  
-    this.sheetName;
-    // worksheet
-    this.worksheetData;
-}
 function exportExcel(){ 
-    // 설정 및 데이터 가져오기 
-    var excelInfo = getSettings();
-    
-    // workbook 생성
+    // step 1. workbook 생성
     var wb = XLSX.utils.book_new();
 
-    // 시트 데이터를 시트에 넣기 
-    XLSX.utils.book_append_sheet(wb, excelInfo.worksheetData, excelInfo.sheetName);
+    // step 2. 시트 만들기 
+    var newWorksheet = excelHandler.getWorksheet();
+    
+    // step 3. workbook에 새로만든 워크시트에 이름을 주고 붙인다.  
+    XLSX.utils.book_append_sheet(wb, newWorksheet, excelHandler.getSheetName());
 
-    // 엑셀 파일 쓰기 
+    // step 4. 엑셀 파일 만들기 
     var wbout = XLSX.write(wb, {bookType:'xlsx',  type: 'binary'});
 
-    saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), excelInfo.excelFileName);
+    // step 5. 엑셀 파일 내보내기 
+    saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), excelHandler.getExcelFileName());
 }
-
 $(document).ready(function() { 
     $("#excelFileExport").click(function(){
         exportExcel();
     });
 });
 </script>
-
 <script>
-function getSettings(){ 
-    var customExcelInfo = new CustomExcelInfo();
-    customExcelInfo.excelFileName = 'json-test.xlsx';
-    customExcelInfo.sheetName = 'Json Test Sheet';
-
-    // data 정의 배열(rows) 안에 배열(cols) 형태 
-    var json_data = [{'상품명':'삼성 갤럭시 s11' , '가격':'200000'}, {'상품명':'삼성 갤럭시 s12' , '가격':'220000'}, {'상품명':'삼성 갤럭시 s13' , '가격':'230000'}];  //a row with 2 columns
-    // 배열 데이터로 시트 데이터 생성
-    var ws = XLSX.utils.json_to_sheet(json_data);
-    
-    customExcelInfo.worksheetData = ws;
-    return customExcelInfo;
+var excelHandler = {
+        getExcelFileName : function(){
+            return 'json-test.xlsx';
+        },
+        getSheetName : function(){
+            return 'Json Test Sheet';
+        },
+        getExcelData : function(){
+            return [{'상품명':'삼성 갤럭시 s11' , '가격':'200000'}, {'상품명':'삼성 갤럭시 s12' , '가격':'220000'}, {'상품명':'삼성 갤럭시 s13' , '가격':'230000'}]; 
+        },
+        getWorksheet : function(){
+            return XLSX.utils.json_to_sheet(this.getExcelData());
+        }
 }
 </script>
 </head>
