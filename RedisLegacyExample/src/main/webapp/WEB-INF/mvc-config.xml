@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="eblo.cache.test.web"/>
+
+	<mvc:annotation-driven>
+	   <mvc:message-converters>
+	       <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+	   </mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- Example: a logical view name of 'showMessage' is mapped to '/WEB-INF/jsp/showMessage.jsp' -->
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- turn on declarative caching -->
+	<cache:annotation-driven />
+
+	<!-- declare Redis Cache Manager -->
+	<bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager" 
+	      c:redis-operations-ref='redisTemplate'>
+        <property name="expires">
+            <map>
+                <entry key="sessionData" value="7200"></entry>
+                <entry key="portalData" value="7200"></entry>
+                <entry key="referenceData" value="86400"></entry>
+            </map>
+        </property>
+    </bean>
+ 
+
+</beans>
