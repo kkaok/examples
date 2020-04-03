@@ -19,4 +19,9 @@ public class EmailProducerTest {
         emailProducer.sendMsg("info@example.com", "Hello");
     }
 
+    @Test
+    public void testSendTopicMsg() {
+        emailProducer.sendTopicMsg("test2", "info@example.com", "Hello");
+    }
+
 }
