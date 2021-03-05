@@ -4,11 +4,6 @@ import java.util.Scanner;
 
 public class TestTOTPTokenGenerator {
     
-	// security key 생성 후 설정
-	// google otp 실행 후 아래 바코드로 otp 생성 후 테스트 
-	private static String secretKey = "NS4TPIG34GXHD4VQE35HBQCQGQIKYKZS";
-	private static String barcodeUrl = "https://www.google.com/chart?chs=200x200&chld=M|0&cht=qr&chl=otpauth://totp/TOTPTest%3Atest%40test.com?secret=NS4TPIG34GXHD4VQE35HBQCQGQIKYKZS&issuer=TOTPTest";
-
 	public static void main(String[] args) {
     	// generateSecurityKey();
         Scanner scanner = new Scanner(System.in);
