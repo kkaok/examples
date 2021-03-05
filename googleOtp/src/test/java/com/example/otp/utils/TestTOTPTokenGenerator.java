@@ -13,7 +13,7 @@ public class TestTOTPTokenGenerator {
     	// generateSecurityKey();
         Scanner scanner = new Scanner(System.in);
         String code = scanner.nextLine();
-        if (code.equals(TOTPTokenValidation.getTOTPCode(secretKey))) {
+        if (TOTPTokenValidation.validate(code)) {
             System.out.println("Logged in successfully");
         } else {
             System.out.println("Invalid 2FA Code");
