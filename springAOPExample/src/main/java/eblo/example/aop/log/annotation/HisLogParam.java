@@ -1,4 +1,4 @@
-package eblo.example.aop.annotation;
+package eblo.example.aop.log.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

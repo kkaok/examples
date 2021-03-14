@@ -1,4 +1,4 @@
-package eblo.example.util;
+package eblo.example.aop.util;
 
 import java.net.InetAddress;
 
@@ -14,6 +14,7 @@ public class IPUtils {
         throw new RuntimeException("This is a Util class. cannot create a new contructor");
     }
 
+    // referred : https://stackoverflow.com/questions/1979419/how-to-get-client-ip-address-in-spring-bean
     private static final String[] IP_HEADER_CANDIDATES = {
             "X-Forwarded-For",
             "Proxy-Client-IP",

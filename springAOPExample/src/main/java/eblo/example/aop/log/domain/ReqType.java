@@ -1,4 +1,4 @@
-package eblo.example.log.domain;
+package eblo.example.aop.log.domain;
 
 public enum ReqType {
     READ("R")
@@ -17,6 +17,4 @@ public enum ReqType {
     public String getValue() {
         return this.value;
     }
-
-
 }

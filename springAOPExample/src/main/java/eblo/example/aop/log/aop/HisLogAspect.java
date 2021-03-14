@@ -1,4 +1,4 @@
-package eblo.example.aop.user.aop;
+package eblo.example.aop.log.aop;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
@@ -16,10 +16,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import eblo.example.aop.annotation.HisLogManager;
-import eblo.example.aop.annotation.HisLogParam;
-import eblo.example.log.service.HisLogService;
-import eblo.example.util.IPUtils;
+import eblo.example.aop.log.annotation.HisLogManager;
+import eblo.example.aop.log.annotation.HisLogParam;
+import eblo.example.aop.log.service.HisLogService;
+import eblo.example.aop.util.IPUtils;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -30,15 +30,15 @@ public class HisLogAspect {
     @Autowired
     private HisLogService hisLogService;
     
-    @AfterReturning(pointcut = "@annotation(eblo.example.aop.annotation.HisLogManager)")
+    @AfterReturning(pointcut = "execution(* eblo.example..controller.*Controller.*(..)) && @annotation(eblo.example.aop.log.annotation.HisLogManager)")
     public void afterReturning(JoinPoint joinPoint) {
-        log.debug("afterReturning #####################");
+        log.info("afterReturning #####################");
         handleHisLogManger(joinPoint);
     }
 
-    @AfterThrowing(pointcut = "@annotation(eblo.example.aop.annotation.HisLogManager)")
+    @AfterThrowing(pointcut = "execution(* eblo.example..controller.*Controller.*(..)) && @annotation(eblo.example.aop.log.annotation.HisLogManager)")
     public void afterThrowing(JoinPoint joinPoint) {
-        log.debug("afterThrowing #####################");
+        log.info("afterThrowing #####################");
         handleHisLogManger(joinPoint);
     }
     
@@ -71,13 +71,13 @@ public class HisLogAspect {
         return null;
     }
     
-    //@Around("@annotation(eblo.example.aop.annotation.HisLogManger) ")
+    //@Around("@annotation(eblo.example.aop.log.annotation.HisLogManger) ")
     public Object aroundProcess(ProceedingJoinPoint pjp) throws Throwable {
         try {
             return pjp.proceed(pjp.getArgs());
         } finally {
             handleHisLogManger(pjp);
-            log.debug("aroundProcess test");
+            log.info("aroundProcess test");
         }
     }
 

@@ -1,35 +1,43 @@
-package eblo.example.log.service;
+package eblo.example.aop.log.service;
 
 import java.time.LocalDateTime;
 
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import eblo.example.log.domain.AppType;
-import eblo.example.log.domain.HisLog;
-import eblo.example.log.domain.ReqType;
-import eblo.example.log.domain.TargetId;
+import eblo.example.aop.log.domain.AppType;
+import eblo.example.aop.log.domain.HisLog;
+import eblo.example.aop.log.domain.ReqType;
+import eblo.example.aop.log.domain.TargetId;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
 public class HisLogService {
 
-    
-    //@Async
+    @Async
     public void save(final String reqIp, AppType appType, TargetId targetId, ReqType reqType, Object params) {
+//        async test  
+//        try {
+//            Thread.sleep(5000L);
+//        } catch (InterruptedException e1) {
+//            e1.printStackTrace();
+//        }
+
         try {
             HisLog hisLog = new HisLog();
             hisLog.setAppType(appType.name());
             hisLog.setTargetId(targetId.name());
             hisLog.setReqType(reqType.getValue());
             hisLog.setReqIp(reqIp);
-            hisLog.setCreteDt(LocalDateTime.now());
+            hisLog.setCreateDt(LocalDateTime.now());
             hisLog.setReqData(convertJson(params));
             log.info(hisLog.toString());
+            // TODO 
         }catch(Exception e) {
             log.error(e.getLocalizedMessage());
         }

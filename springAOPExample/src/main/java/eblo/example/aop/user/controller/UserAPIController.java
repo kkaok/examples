@@ -1,4 +1,4 @@
-package eblo.example.aop.user;
+package eblo.example.aop.user.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import eblo.example.aop.annotation.HisLogManager;
-import eblo.example.aop.annotation.HisLogParam;
+import eblo.example.aop.log.annotation.HisLogManager;
+import eblo.example.aop.log.annotation.HisLogParam;
+import eblo.example.aop.log.domain.AppType;
+import eblo.example.aop.log.domain.ReqType;
+import eblo.example.aop.log.domain.TargetId;
 import eblo.example.aop.user.domain.User;
-import eblo.example.log.domain.AppType;
-import eblo.example.log.domain.ReqType;
-import eblo.example.log.domain.TargetId;
 
 @RestController
 public class UserAPIController {

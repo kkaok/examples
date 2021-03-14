@@ -1,4 +1,4 @@
-package eblo.example.log.domain;
+package eblo.example.aop.log.domain;
 
 public enum AppType {
     WEB

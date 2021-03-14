@@ -1,4 +1,4 @@
-package eblo.example.log.domain;
+package eblo.example.aop.log.domain;
 
 import java.time.LocalDateTime;
 
@@ -14,7 +14,7 @@ public class HisLog {
     private String reqType;
     private String reqIp;
     private String reqData;
-    private LocalDateTime creteDt;
-    private String creteId;
+    private LocalDateTime createDt;
+    private String createId;
     
 }
