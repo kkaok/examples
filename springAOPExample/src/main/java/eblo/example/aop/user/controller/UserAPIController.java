@@ -48,21 +48,21 @@ public class UserAPIController {
     @GetMapping("/users/{userId}")
     @HisLogManager(targetId=TargetId.USER, appType=AppType.WEB, reqType=ReqType.DETAIL)
     public User findUserDetail(@HisLogParam User pUser) {
-        pUser.setCreteDt(new Date());
+        pUser.setCreateDt(new Date());
         return pUser;
     }
 
     @PostMapping("/users")
     @HisLogManager(targetId=TargetId.USER, appType=AppType.WEB, reqType=ReqType.CREATE)
     public User createUser(@HisLogParam User pUser) {
-        pUser.setCreteDt(new Date());
+        pUser.setCreateDt(new Date());
         return pUser;
     }
 
     @PutMapping("/users/{userId}")
     @HisLogManager(targetId=TargetId.USER, appType=AppType.WEB, reqType=ReqType.UPDATE)
     public User modifyUser(@RequestBody @HisLogParam User pUser) {
-        pUser.setCreteDt(new Date());
+        pUser.setCreateDt(new Date());
         return pUser;
     }
     

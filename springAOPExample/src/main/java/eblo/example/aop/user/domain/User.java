@@ -13,7 +13,7 @@ public class User {
 
     private Integer age;
 
-    private Date creteDt;
+    private Date createDt;
     
     public User() {
         super();
