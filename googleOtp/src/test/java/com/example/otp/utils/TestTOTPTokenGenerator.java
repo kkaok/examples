@@ -4,8 +4,12 @@ import java.util.Scanner;
 
 public class TestTOTPTokenGenerator {
     
-	public static void main(String[] args) {
-    	// generateSecurityKey();
+    public static void main(String[] args) {
+        generateSecurityKey();
+        testToken();
+    }
+    
+    private static void testToken() {
         Scanner scanner = new Scanner(System.in);
         String code = scanner.nextLine();
         if (TOTPTokenValidation.validate(code)) {
@@ -14,12 +18,12 @@ public class TestTOTPTokenGenerator {
             System.out.println("Invalid 2FA Code");
         }
     }
-    
+
     private static void generateSecurityKey() {
         String secretKey = TOTPTokenGenerator.generateSecretKey();
         System.out.println(secretKey);
-        String email = "test@test.com";
-        String company = "TOTPTest";
+        String email = "Manger-Auth";
+        String company = "FTK";
         String barcodeUrl = TOTPTokenGenerator.getGoogleAuthenticatorBarCode(secretKey, email, company); 
         System.out.println(barcodeUrl);
     }
