@@ -30,7 +30,7 @@ public class TestSendMailService {
             ctxMap.put("hobbies", Arrays.asList("Cinema", "Sports", "Music"));
             //String[] toArr = new String[] {"hkim@foodtechkorea.com"};
             try {
-                sendMailService.sendEmail( "hkim@foodtechkorea.com", "test email send2222 ~~~", ctxMap , "emailTest") ;
+                sendMailService.sendEmail( "테스트 메일주소입력", "test email send2222 ~~~", ctxMap , "emailTest") ;
             }catch(Exception e) {
                 throw new RuntimeException("이메일 발송에 실패했습니다. 지속족인 오류 발송 시 관리자에게 문의해 주세요.");
             }
