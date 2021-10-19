@@ -14,16 +14,16 @@ public class Receiver {
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue,
             exchange = @Exchange(value = "amq.topic", type = "topic", durable = "true"), //
-            key = "test"))
+            key = "testAll"))
     public void handleMsg1(Email in) {
         System.out.println(in.toString());
     }
 
     @RabbitListener(bindings = @QueueBinding(
-            value = @Queue(value = "kkaok", durable = "true"),
+            value = @Queue,
             exchange = @Exchange(value = "amq.topic", type = "topic", durable = "true"), //
             key = "test.0001"))
-    public void handleMsg2(Email in) {
+    public void handleMsgKey(Email in) {
         System.out.println(in.toString());
     }
 

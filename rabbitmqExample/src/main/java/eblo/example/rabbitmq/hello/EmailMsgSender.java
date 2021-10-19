@@ -15,6 +15,7 @@ public class EmailMsgSender {
     private TopicExchange topic;
 
     public void sendEmail(String routingKey, Email email){
+        System.out.println("send data");
         rabbitTemplate.convertAndSend(topic.getName(), routingKey, email);
     }
 

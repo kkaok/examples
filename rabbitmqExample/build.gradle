@@ -1,8 +1,7 @@
 plugins {
-	id 'org.springframework.boot' version '2.2.6.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-	id 'java'
-	id 'war'
+    id 'org.springframework.boot' version '2.5.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
 }
 
 group = 'eblo.example'
@@ -10,17 +9,27 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
+    // lombok, test 설정 시작 
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    // lombok, test 설정 시작
+
     implementation 'com.fasterxml.jackson.core:jackson-databind'
-   
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation 'org.springframework.amqp:spring-rabbit-test'
 }
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
