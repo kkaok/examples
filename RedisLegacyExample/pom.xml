@@ -20,7 +20,7 @@
 		<servlet.version>2.5</servlet.version>
 
 		<!-- Spring -->
-		<spring-framework.version>4.3.9.RELEASE</spring-framework.version>
+		<spring-framework.version>5.2.20.RELEASE</spring-framework.version>
 
 		<!-- Logging -->
 		<logback.version>1.0.13</logback.version>
